@@ -6,20 +6,24 @@ const stopButton = document.getElementById('stop');
 let startTime;
 let stopTime = 0;
 let timeoutID;
-//なぜletなのか？
 
-function displaytime() {
+function displayTime() {
     const currentTime = new Date(Date.now() - startTime + stopTime);
-    const h = String(currentTime.getHours()).padStart(2, '0');
-    const m = String(currentTime.getMinutes()).padStart(2, '0');
-
-    time.textContent = '${h}:${m}';
+    const m = String(0 - currentTime.getMinutes()).padStart(2, '0');
+    const s = String(15 - currentTime.getSeconds()).padStart(2, '0'); 
+    time.textContent =  `${m}:${s}`;
+    /*if(s = 10) {
+        document.getElementById("rest_sound").play();
+    }
+    if(s <= 0) {
+        clearTimeout(TimeoutID);
+    }*/
+    timeoutID = setTimeout(displayTime, 1000);
 }
 
 startButton.addEventListener('click', function() {
     startButton.disabled = true;
     stopButton.disabled = false;
-    resetButton.disabled = true;
     startTime = Date.now();
     displayTime();
 });
@@ -27,15 +31,6 @@ startButton.addEventListener('click', function() {
 stopButton.addEventListener('click', function() {
     startButton.disabled = false;
     stopButton.disabled = true;
-    resetButton.disabled = false;
     clearTimeout(timeoutID);
     stopTime += (Date.now() - startTime);
-  });
-
-  resetButton.addEventListener('click', function() {
-    startButton.disabled = false;
-    stopButton.disabled = true;
-    resetButton.disabled = true;
-    time.textContent = '00:00:00.000';
-    stopTime = 0;
   });

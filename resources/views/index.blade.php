@@ -5,15 +5,21 @@
     <title>STOPWATCH</title>
 </head>
 <body>
-  <h1>Stopwatch</h1>
+  <h1>タイマー</h1>
   <div id="container">
-    <div id="time">00:00:00.000</div>
+    時間
+    <div id="time">25：00</div>
+    周回
+    <div id="count">0</div>
     <div id="buttons">
       <input id="start" type="button" value="start">
       <input id="stop" type="button" value="stop">
-      <input id="reset" type="button" value="reset">
     </div>
+    勉強時間
+    <div id="studyTime">00：00：00</div>
   </div>  
-  <script src="{{ asset('/js/stopwatch.js') }}"></script>
+  <script src='/js/new.js'></script>
+  <audio src='/mp3/start.mp3' id = "start_sound"></audio>
+  <audio src='/mp3/rest.mp3' id = "rest_sound"></audio>
 </body>
 </html>
