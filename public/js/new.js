@@ -2,7 +2,7 @@ var start = document.getElementById('start');
 var stop = document.getElementById("stop");
 var reset = document.getElementById("reset");
 
-var count   = 1500;    
+var count   = 1800;    
 var min     = 0;      
 var sec     = 0;
 var i = 0;      
@@ -47,14 +47,15 @@ function timer_stop(){
     var h;
     var m;
     var s;
-    h = Math.floor(timer / 3600)
+    h = Math.floor(timer / 3600);
     m = Math.floor((timer % 3600) / 60);
     s = timer % 60;
     var timer_show = document.getElementById("studyTime");
     timer_show.innerHTML =("0"+h)+"：" + ("0"+m) +"：" + ("0"+s).slice(-2);
-    var message = "timer stop ";
-    console.log(message, timer);
     timer_f = false;
+    document.getElementById("hidden").value = String(timer);
+    var message = "timer stop ";
+    console.log(message);
 }
 
 function count_down(){
@@ -83,9 +84,9 @@ function count_stop(){
 
 function count_reset(){
     clearInterval(interval);
-     count = 1500;
+     count = 1800;
      start_f = false;
      var count_down = document.getElementById("time");
      count_down.style.color = 'black';
-     count_down.innerHTML = "25：00";
- }    
+     count_down.innerHTML = "30：00";
+ }

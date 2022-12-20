@@ -17,6 +17,11 @@
     </div>
     勉強時間
     <div id="studyTime">00：00：00</div>
+    <form action="{{route('study.store')}}" method="post">
+      @csrf
+      <input type="hidden" id="hidden" name="hidden_time" value="0">
+      <input type="submit" value="送信">
+    </form>
   </div>  
   <script src='/js/new.js'></script>
   <audio src='/mp3/start.mp3' id = "start_sound"></audio>
