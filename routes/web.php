@@ -1,18 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudyController;
+use  App\Http\Controllers\PostController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [StudyController::class, 'index'])->name('study.create');
+Route::post('/record', [StudyController::class, 'store'])->name('study.store');
+Route::post('/restore', [StudyController::class, 'restore'])->name('study.restore');
