@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->text('comment');
-            $table->int('time');
+            $table->integer('time');
+            $table->integer('subject_id');
+            $table->timestamp('studied_date');
         });
     }
 

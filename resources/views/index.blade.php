@@ -22,6 +22,9 @@
       <input type="hidden" id="hidden" name="hidden_time" value="0">
       <input type="submit" value="送信">
     </form>
+    <div>
+      <a href = "{{ url('/record') }}" >学習記録</a>
+    </div>
   </div>  
   <script src='/js/new.js'></script>
   <audio src='/mp3/start.mp3' id = "start_sound"></audio>
