@@ -23,7 +23,7 @@
       <input type="submit" value="送信">
     </form>
     <div>
-      <a href = "{{ url('/record') }}" >学習記録</a>
+      <a href = "{{route('study.result')}}" >学習記録</a>
     </div>
   </div>  
   <script src='/js/new.js'></script>

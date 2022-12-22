@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Record;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class StudyController extends Controller
 {
@@ -33,6 +35,27 @@ class StudyController extends Controller
         $record->studied_date = $request->created_at;
         $record->timestamps = false;
         $record->save();
+        
         return view('index',compact('record'));
+    }
+    
+    public function result() {
+        $now = Carbon::now();
+        $today = $now->format('Y-m-d');
+        $year = $now->format('Y');
+        $month = $now->format('m');
+        
+        $today_time = DB::table('records')
+            ->whereDate('studied_date', $today)
+            ->get()
+            ->sum('time');
+            
+        $month_time = DB::table('records')
+            ->whereYear('studied_date', $year)
+            ->whereMonth('studied_date', $month)
+            ->get()
+            ->sum('time');
+        
+        return view('result', compact('today_time', 'month_time'));
     }
 }
