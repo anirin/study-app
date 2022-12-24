@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profession_id'
     ];
 
     /**
@@ -41,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function records()
+    {
+        return $this->hasMany('App\Models\Record');
+    }
+    
+    public function professions()
+    {
+        return $this->hasMany('App\Models\Profession');
+    }
 }

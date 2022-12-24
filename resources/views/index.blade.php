@@ -5,6 +5,9 @@
     <title>STOPWATCH</title>
 </head>
 <body>
+  <div>
+      <a href = "{{route('home')}}" >ログイン</a>
+  </div>
   <h1>タイマー</h1>
   <div id="container">
     時間

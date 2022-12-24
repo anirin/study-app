@@ -34,6 +34,7 @@ class StudyController extends Controller
         $record->time = $request->hidden_time;
         $record->studied_date = $request->created_at;
         $record->timestamps = false;
+        $record->user_id = \Auth::id();
         $record->save();
         
         return view('index',compact('record'));
@@ -46,11 +47,13 @@ class StudyController extends Controller
         $month = $now->format('m');
         
         $today_time = DB::table('records')
+            ->where('user_id', \Auth::user()->id)
             ->whereDate('studied_date', $today)
             ->get()
             ->sum('time');
             
         $month_time = DB::table('records')
+            ->where('user_id', \Auth::user()->id)
             ->whereYear('studied_date', $year)
             ->whereMonth('studied_date', $month)
             ->get()

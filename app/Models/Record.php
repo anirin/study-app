@@ -17,6 +17,11 @@ class Record extends Model
     
     
     public function subject() {
-        return this->hasOne('App/Models/Subject');
+        return this->hasOne('App\Models\Subject');
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }
