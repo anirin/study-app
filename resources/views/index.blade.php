@@ -5,6 +5,9 @@
     <title>STOPWATCH</title>
 </head>
 <body>
+  <div>
+      <a href = "{{route('home')}}" >ログイン</a>
+  </div>
   <h1>タイマー</h1>
   <div id="container">
     時間
@@ -23,7 +26,7 @@
       <input type="submit" value="送信">
     </form>
     <div>
-      <a href = "{{ url('/record') }}" >学習記録</a>
+      <a href = "{{route('study.result')}}" >学習記録</a>
     </div>
   </div>  
   <script src='/js/new.js'></script>

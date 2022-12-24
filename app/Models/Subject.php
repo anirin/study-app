@@ -17,6 +17,6 @@ class Subject extends Model
     }
     
     public function records(){
-        return $this->hasMany('App/Models/Record');
+        return $this->hasMany('App\Models\Record');
     }
 }
