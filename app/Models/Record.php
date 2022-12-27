@@ -13,8 +13,8 @@ class Record extends Model
     protected $dates = [
         'studied_date'
         ];
-        
-    
+    //seeder update_at null 回避
+    public $timestamps = false;
     
     public function subject() {
         return this->hasOne('App\Models\Subject');
