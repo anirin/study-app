@@ -6,12 +6,15 @@
 </head>
 <body>
   <div>
-      <a href = "{{route('home')}}" >ログイン</a>
+      <a href = "{{route('register')}}" >登録</a>
+  </div>
+  <div>
+      <a href = "{{route('login')}}" >ログイン</a>
   </div>
   <h1>タイマー</h1>
   <div id="container">
     時間
-    <div id="time">25：00</div>
+    <div id="time">30：00</div>
     周回
     <div id="count">0</div>
     <div id="buttons">
@@ -27,6 +30,9 @@
     </form>
     <div>
       <a href = "{{route('study.result')}}" >学習記録</a>
+    </div>
+    <div>
+      <a href = "{{route('study.ranking')}}" >モチベ向上</a>
     </div>
   </div>  
   <script src='/js/new.js'></script>

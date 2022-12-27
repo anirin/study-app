@@ -51,7 +51,7 @@ function timer_stop(){
     m = Math.floor((timer % 3600) / 60);
     s = timer % 60;
     var timer_show = document.getElementById("studyTime");
-    timer_show.innerHTML =("0"+h)+"：" + ("0"+m) +"：" + ("0"+s).slice(-2);
+    timer_show.innerHTML =("0"+h).slice(-2)+"：" + ("0"+m).slice(-2) +"：" + ("0"+s).slice(-2);
     timer_f = false;
     document.getElementById("hidden").value = String(timer);
     var message = "timer stop ";

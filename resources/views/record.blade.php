@@ -20,7 +20,7 @@
                 @foreach($subjects as $id => $subject)
                     <option value="{{ $id }}">{{ $subject }}</option>
                 @endforeach
-        </select>    
+            </select>    
         </div>
         コメント
         <div>

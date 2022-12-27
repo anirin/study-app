@@ -12,7 +12,7 @@ class Profession extends Model
     public function getLists()
     {
         $professions = Profession::orderBy('id','asc')->pluck('profession', 'id');
-        return $profession;
+        return $professions;
     }
     
     public function users() {
