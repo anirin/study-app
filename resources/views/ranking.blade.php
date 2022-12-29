@@ -10,7 +10,11 @@
     </div>
     <div>
     ランキング
-        <a>{{$rank->rank}}</a>
+    @foreach($records as $record)
+    <tr>
+        <td>{{$record->rank}}</td>
+    </tr>
+    @endforeach
     </div>
     コメント一覧
     @foreach($comments as $comment)

@@ -2,7 +2,7 @@ var start = document.getElementById('start');
 var stop = document.getElementById("stop");
 var reset = document.getElementById("reset");
 
-var count   = 1800;    
+var count   = study_time + rest_time;    
 var min     = 0;      
 var sec     = 0;
 var i = 0;      
@@ -67,8 +67,8 @@ function count_down(){
         count_start();
     }else {
         count--;
-        if(count == 10){
-            //document.getElementById("rest_sound").play();
+        if(count == rest_time){
+            document.getElementById("rest_sound").play();
         }
         min = Math.floor(count / 60);
         sec = count % 60;
@@ -84,9 +84,11 @@ function count_stop(){
 
 function count_reset(){
     clearInterval(interval);
-     count = 1800;
-     start_f = false;
-     var count_down = document.getElementById("time");
-     count_down.style.color = 'black';
-     count_down.innerHTML = "30：00";
+    count = study_time + rest_time;
+    start_f = false;
+    min = Math.floor(count / 60);
+    sec = count % 60;
+    var count_down = document.getElementById("time");
+    count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
+    document.getElementById("start_sound").play();
  }
