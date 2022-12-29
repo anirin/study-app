@@ -35,6 +35,8 @@ Route::post('/restore', [StudyController::class, 'restore'])->name('study.restor
 Route::get('/result', [StudyController::class, 'result'])->name('study.result');
 Route::get('/ranking', [StudyController::class, 'comment'])->name('study.ranking');
 Route::post('/ranking', [StudyController::class, 'post'])->name('study.post');
+Route::get('/setting', [StudyController::class, 'show_setting'])->name('study.show_setting');
+Route::put('/setting', [StudyController::class, 'setting'])->name('study.setting');
 
 require __DIR__.'/auth.php';
 

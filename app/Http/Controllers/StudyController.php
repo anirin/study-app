@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Record;
 use App\Models\Subject;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Log; 
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-$now = Carbon::now();
-        $today = $now->format('Y-m-d');
-        $year = $now->format('Y');
-        $month = $now->format('m');
 
 class StudyController extends Controller
 {
     public function index() {
-        return view('index');
+        $id = \Auth::user()->id;
+        $user = User::find($id);
+        
+        return view('index', compact('user'));
     }
     
     public function store(Request $request) {
@@ -43,10 +43,17 @@ class StudyController extends Controller
         $record->user_id = \Auth::id();
         $record->save();
         
-        return view('index',compact('record'));
+        //return view('index',compact('record'));
+        return redirect()->route('study.index');
     }
     
     public function result() {
+        
+        $now = Carbon::now();
+        $today = $now->format('Y-m-d');
+        $year = $now->format('Y');
+        $month = $now->format('m');
+        
         $today_time = DB::table('records')
             ->where('user_id', \Auth::user()->id)
             ->whereDate('studied_date', $today)
@@ -67,26 +74,31 @@ class StudyController extends Controller
         $comments = Post::orderBy('created_at', 'desc')
             ->get();
         $id = \Auth::user()->id;
-        $record =DB::select("SELECT * FROM(
+        $now = Carbon::now();
+        $today = $now->format('Y-m-d');
+        $records = DB::select("
+            SELECT * FROM(
             SELECT S.user_id, max(S.time) AS time, count(A.time) + 1 AS rank FROM (
-                SELECT user_id, sum(time) AS time FROM records
+                SELECT user_id, sum(time) AS time 
+                FROM records
+                WHERE studied_date = '$today'
                 GROUP BY user_id
                 ORDER BY time DESC
             ) S
             LEFT JOIN (
-                SELECT sum(time) AS time FROM records
+                SELECT sum(time) AS time 
+                FROM records
+                WHERE studied_date = '$today'
                 GROUP BY user_id
             ) A ON S.time < A.time
             GROUP BY S.user_id
             ORDER BY time DESC
             )C
-            WHERE C.user_id = $id");
+            WHERE C.user_id = $id
+            ");
         
-        //dd($record);
-        $rank = $record[0];
-        //dd($rank);
-            
-        return view('ranking',compact('comments', 'rank'));
+        
+        return view('ranking', compact('comments', 'records'));
     }
     
     public function post(Request $request) {
@@ -99,6 +111,24 @@ class StudyController extends Controller
         $comments = Post::orderBy('created_at', 'desc')
             ->get();
         
-        return view('ranking',compact('comments'));
+        return view('ranking', compact('comments'));
+    }
+    
+    public function show_setting() {
+        $id = \Auth::user()->id;
+        $setting = User::find($id);
+        
+        return view('setting', compact('setting'));
+    }
+    
+    public function setting(Request $request) {
+        $id = \Auth::user()->id;
+        
+        $setting = User::find($id);
+        $setting->study_time = $request->study_time;
+        $setting->rest_time = $request->rest_time;
+        $setting->save();
+        
+        return redirect()->route("study.show_setting");
     }
 }

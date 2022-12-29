@@ -34,7 +34,24 @@
     <div>
       <a href = "{{route('study.ranking')}}" >モチベ向上</a>
     </div>
-  </div>  
+    <div>
+      <a href = "{{route('study.setting')}}" >設定</a>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var study_time = {{$user->study_time}};
+    var rest_time = {{$user->rest_time}};
+    window.addEventListener("load", set_time);
+    
+    function set_time() {
+      min = Math.floor(count / 60);
+      sec = count % 60;
+      var count_down = document.getElementById("time");
+      count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
+      var message = "set time load";
+      console.log(message);
+    }
+  </script>
   <script src='/js/new.js'></script>
   <audio src='/mp3/start.mp3' id = "start_sound"></audio>
   <audio src='/mp3/rest.mp3' id = "rest_sound"></audio>
