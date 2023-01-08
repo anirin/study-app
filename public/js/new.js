@@ -92,3 +92,11 @@ function count_reset(){
     count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
     document.getElementById("start_sound").play();
  }
+ 
+ function mute() {
+    if (document.getElementById('rest_sound').muted) {
+        document.getElementById('rest_sound').muted = false;
+    } else {
+        document.getElementById('rest_sound').muted = true;
+    }
+}

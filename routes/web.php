@@ -29,7 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/', [StudyController::class, 'index'])->name('study.index');
+Route::get('/', [StudyController::class, 'login'])->name('study.login');
+Route::get('/index', [StudyController::class, 'index'])->name('study.index');
 Route::post('/store', [StudyController::class, 'store'])->name('study.store');
 Route::post('/restore', [StudyController::class, 'restore'])->name('study.restore');
 Route::get('/result', [StudyController::class, 'result'])->name('study.result');

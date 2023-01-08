@@ -6,7 +6,7 @@
 </head>
 <body>
     <div>
-      <a href = "{{ url('/') }}" >TOP</a>
+      <a href = "{{ url('/index') }}" >TOP</a>
     </div>
     <h1>今日の勉強時間</h1>
     <div id=today_time>00：00：00</div>

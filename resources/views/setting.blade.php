@@ -6,7 +6,7 @@
 </head>
 <body>
     <div>
-      <a href = "{{ url('/') }}" >TOP</a>
+      <a href = "{{ url('/index') }}" >TOP</a>
     </div>
     <form action="{{ route('study.setting') }}" method="POST">
         @method('PUT')
