@@ -6,12 +6,23 @@
 </head>
 <body>
   <div>
-      <a href = "{{route('register')}}" >登録</a>
+    <a href = "{{route('register')}}" >登録</a>
   </div>
   <div>
-      <a href = "{{route('login')}}" >ログイン</a>
+    <a href = "{{route('login')}}" >ログイン</a>
   </div>
+  <div>
+    <a href = "{{route('study.result')}}" >学習記録</a>
+  </div>
+  <div>
+    <a href = "{{route('study.ranking')}}" >モチベ向上</a>
+  </div>
+  <div>
+    <a href = "{{route('study.setting')}}" >設定</a>
+  </div>
+  
   <h1>タイマー</h1>
+  
   <div id="container">
     時間
     <div id="time">30：00</div>
@@ -28,16 +39,11 @@
       <input type="hidden" id="hidden" name="hidden_time" value="0">
       <input type="submit" value="送信">
     </form>
-    <div>
-      <a href = "{{route('study.result')}}" >学習記録</a>
-    </div>
-    <div>
-      <a href = "{{route('study.ranking')}}" >モチベ向上</a>
-    </div>
-    <div>
-      <a href = "{{route('study.setting')}}" >設定</a>
-    </div>
+    <div class="mute_btn" onClick="mute()">muteの切り替え</div>
   </div>
+  
+  <div class="pie"></div>
+  
   <script type="text/javascript">
     var study_time = {{$user->study_time}};
     var rest_time = {{$user->rest_time}};

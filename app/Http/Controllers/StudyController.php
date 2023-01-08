@@ -14,6 +14,10 @@ use Carbon\Carbon;
 
 class StudyController extends Controller
 {
+    public function login() {
+        
+        return view('login');
+    }
     public function index() {
         $id = \Auth::user()->id;
         $user = User::find($id);
@@ -76,12 +80,14 @@ class StudyController extends Controller
         $id = \Auth::user()->id;
         $now = Carbon::now();
         $today = $now->format('Y-m-d');
+        $tomorrow = $now->modify('+1 days')->format('Y-m-d');
         $records = DB::select("
             SELECT * FROM(
             SELECT S.user_id, max(S.time) AS time, count(A.time) + 1 AS rank FROM (
                 SELECT user_id, sum(time) AS time 
                 FROM records
-                WHERE studied_date = '$today'
+                WHERE studied_date >= '$today'
+                AND studied_date <= '$tomorrow'
                 GROUP BY user_id
                 ORDER BY time DESC
             ) S
@@ -89,6 +95,7 @@ class StudyController extends Controller
                 SELECT sum(time) AS time 
                 FROM records
                 WHERE studied_date = '$today'
+                AND studied_date <= '$tomorrow'
                 GROUP BY user_id
             ) A ON S.time < A.time
             GROUP BY S.user_id
@@ -96,7 +103,6 @@ class StudyController extends Controller
             )C
             WHERE C.user_id = $id
             ");
-        
         
         return view('ranking', compact('comments', 'records'));
     }
