@@ -2,7 +2,8 @@ var start = document.getElementById('start');
 var stop = document.getElementById("stop");
 var reset = document.getElementById("reset");
 
-var count   = study_time + rest_time;    
+var count   = study_time + rest_time;
+var round_count = study_time + rest_time;
 var min     = 0;      
 var sec     = 0;
 var i = 0;      
@@ -11,6 +12,7 @@ var timer_f = false;
 var interval;
 var interval_studyTime;
 var timer = 0;
+const circle = document.querySelector(".circle");
 
 start.addEventListener('click',count_start, false);
 start.addEventListener('click',timer_start, false);
@@ -18,22 +20,19 @@ stop.addEventListener("click",count_stop, false);
 stop.addEventListener("click",timer_stop, false);
 reset.addEventListener("click",count_reset,false);
 
+
 function count_start(){
-    var message = "start";
-    console.log(message);
     if (start_f === false) {
-        var message = "start";
-        console.log(message);
         interval = setInterval(count_down,1000);
+        
         start_f = true;
     }
 }
 
 function timer_start(){
     if (timer_f === false) {
-        var message = "timer start";
-        console.log(message);
         interval_studyTime = setInterval(count_up,1000);
+        round_timer();
         timer_f = true;
     }
 }
@@ -62,7 +61,7 @@ function count_down(){
     if(count === 1){
         i++;
         var count_repeat = document.getElementById("count");
-        count_repeat.innerHTML = ("0"+i);
+        count_repeat.innerHTML = i + "周";
         count_reset();
         count_start();
     }else {
@@ -98,5 +97,10 @@ function count_reset(){
         document.getElementById('rest_sound').muted = false;
     } else {
         document.getElementById('rest_sound').muted = true;
+    }
+    if (document.getElementById('start_sound').muted) {
+        document.getElementById('start_sound').muted = false;
+    } else {
+        document.getElementById('start_sound').muted = true;
     }
 }
