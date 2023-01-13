@@ -1,0 +1,18 @@
+:root {
+  --main-bg-color: rgba(101, 197, 235);
+}
+
+html{
+  
+}
+
+body{
+  backgrond-color: rgba(211, 226, 240);
+  font-family: 'Kiwi Maru', serif;
+}
+
+.main_wrap{
+  width:100%;
+  max-width: 750px;
+  margin: 0 auto;
+}

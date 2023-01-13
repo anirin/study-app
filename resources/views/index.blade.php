@@ -3,50 +3,90 @@
 <meta charset="utf-8">
 <head>
     <title>STOPWATCH</title>
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="/css/index.css">
+    
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
+    
 </head>
 <body>
-  <div class="main_wrap">
-    <header class="site-header">
-        <div class="wrapper site-header__wrapper">
-          <a href="#" class="brand">ポモドーロ・テクニックタイマー</a>
-          <nav class="nav">
-            <button class="nav__toggle" aria-expanded="false" type="button">
-              menu
-            </button>
-            <ul class="nav__wrapper">
-              <li class="nav__item"><a href = "{{route('register')}}" >新規登録</a></li>
-              <li class="nav__item"><a href = "{{route('login')}}" >ログイン</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    <div id="container" class="boxA">
-      <div class="boxA">
-        <div class="box1" id="time">30：00</div>
-        <div class="box2"><span id="count">0周</span></div>
-      </div>
-      <div class="boxB" id="buttons">
-        <input class="button1" type="button">
-        <input class="button2" id="start" type="button" value="Start">
-        <input class="button3" id="stop" type="button" value="Stop">
-        <form action="{{route('study.store')}}" method="post">
-        @csrf
-        <input type="hidden" id="hidden" name="hidden_time" value="0">
-        <input class="button4" type="submit" value="Record">
-        </form>
-        <input class="button5" type="button" class="mute_btn" onClick="mute()" value="Mute"></input>
-      </div>
-      <div class="container2">
-        <a href = "{{route('study.result')}}" class="nav1">学習記録</a>
-        <a href = "{{route('study.ranking')}}" class="nav2">モチベ向上</a>
-        <a href = "{{route('study.setting')}}" class="nav3">設定</a>
-      </div>
-    <!--勉強時間-->
-    <!--<div id="studyTime">00：00：00</div>-->
-    </div>
-  </div>
+<div class="main_wrap">
   
+<header>
+    <div class="logo">
+      <span>ポモドーロ・テクニック<br>TIMER</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href = "{{route('register')}}" ><span class="header_word">新規登録</span></a></li>
+        <li><a href = "{{route('login')}}" ><span class="header_word">ログイン</span></a></li>
+      </ul>
+    </nav>
+</header>
+<!--header finish-->
+
+<div id="timer_wrap" class="timer_wrap">
+        <div class="timer" id="time">30：00</div>
+        <div class="counter"><span id="count">0周</span></div>
+</div>
+<!--timer finish-->
+
+<div class="button_wrap">
+  <ul>
+    <li class="button">
+      <input id="start" type="image" value="Start" src="/image/start.png">
+      <span>スタート</span></input>
+    </li>
+    <li class="button">
+      <input id="stop" type="image" value="Stop" src="/image/stop.png">
+      <span>ストップ</span></input>
+    </li>
+    <li class="button">
+      <form action="{{route('study.store')}}" method="post">
+      @csrf
+      <input type="hidden" id="hidden" name="hidden_time" value="0">
+      <input type="image" value="Record" src="/image/record.png">
+      <span>記録</span></input>
+    </form>
+    </li>
+    <li class="button">
+      <input type="image" class="mute_btn" id="mute_btn" onClick="mute()" value="Mute" src="/image/volume.png">
+      <span>音量</span></input>
+    </li>
+  </ul>
+</div>
+<!--bottons finish-->
+      
+<div class="sub_contents_wrap">
+  <div class="sub">
+    <a href="{{route('study.result')}}">
+      <img alt="" src="/image/study_record.png">
+      <span>学習記録</span>
+    </a>
+  </div>
+  <div class="sub">
+    <a href="{{route('study.ranking')}}">
+    <img alt="" src="/image/motivate.png">
+    <span>モチベ向上</span>
+    </a>
+  </div>
+  <div class="sub">
+    <a href="{{route('study.setting')}}">
+    <img alt="" src="/image/setting.png">
+    <span>設定</span>
+    </a>
+  </div>
+</div>
+
+<!--勉強時間-->
+<!--<div id="studyTime">00：00：00</div>-->
+
+</div>
+<!--end main wrap-->
+
   <script type="text/javascript">
     var study_time = {{$user->study_time}};
     var rest_time = {{$user->rest_time}};

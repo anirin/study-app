@@ -3,10 +3,19 @@
 <meta charset="utf-8">
 <head>
     <title>RANKING & POST</title>
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="/css/ranking.css">
+    
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
+    
 </head>
 <body>
+<div class="main_wrap">
     <div>
-      <a href = "{{ url('/') }}" >TOP</a>
+      <a href = "{{ url('/index') }}" >TOP</a>
     </div>
     <div>
     ランキング
@@ -34,5 +43,6 @@
             </div>
         </form>
     </div>
+</div>
 </body>
 </html>

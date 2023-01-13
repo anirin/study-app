@@ -3,31 +3,44 @@
 <meta charset="utf-8">
 <head>
     <title>LOGIN</title>
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="/css/login.css">
+    
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
+    
 </head>
 <div class="main_wrap">
-<header class="site-header">
-        <div class="wrapper site-header__wrapper">
+    
+<header>
+        <div>
           <a href="#" class="brand">ポモドーロ・テクニックタイマー</a>
-          <nav class="nav">
-            <button class="nav__toggle" aria-expanded="false" type="button">
-              menu
-            </button>
-            <ul class="nav__wrapper">
-            </ul>
-          </nav>
         </div>
 </header>
 <body>
-    <div class="register">
-        <a href = "{{route('register')}}" >新規登録</a>
+    <div class="contents_wrap">
+        
+        <div class="link">
+        <a href = "{{route('register')}}" >
+            <img alt="" src="/image/register.png">
+            <span>新規登録<span>
+        </a>
+        </div>
+        <div class="link">
+        <a href = "{{route('login')}}" >
+            <img alt="" src="/image/login.png">
+            <span>ログイン</span>
+        </a>
+        </div>
+        <div class="link">
+        <a href = "{{ url('/index') }}" >
+            <img alt="" src="/image/timer.png">
+            <span>TOP</span>
+        </a>
+        </div>
     </div>
-    <div class="login">
-        <a href = "{{route('login')}}" >ログイン</a>
-    </div>
-    <div class ="top">
-        <a href = "{{ url('/index') }}" >TOP</a>
-</div>
 </body>
 </div>
 </html>

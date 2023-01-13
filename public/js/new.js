@@ -12,6 +12,7 @@ var timer_f = false;
 var interval;
 var interval_studyTime;
 var timer = 0;
+var mute_flag = 0;
 const circle = document.querySelector(".circle");
 
 start.addEventListener('click',count_start, false);
@@ -98,9 +99,19 @@ function count_reset(){
     } else {
         document.getElementById('rest_sound').muted = true;
     }
+    
     if (document.getElementById('start_sound').muted) {
         document.getElementById('start_sound').muted = false;
     } else {
         document.getElementById('start_sound').muted = true;
     }
+    
+    if(mute_flag == 0){
+　　    document.getElementById('mute_btn').src = "/image/mute.png";
+　　    mute_flag = 1;
+　  }else{
+　　    document.getElementById('mute_btn').src = "/image/volume.png";
+　　    mute_flag = 0;
+　  }
+　  console.log("mute関数　起動");
 }
