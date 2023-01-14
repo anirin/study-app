@@ -15,10 +15,12 @@
 <div class="main_wrap">
     
 <header>
-        <div>
-          <a href="#" class="brand">ポモドーロ・テクニックタイマー</a>
-        </div>
+    <div class="logo">
+      <span>ポモドーロ・テクニック<br>TIMER</span>
+    </div>
 </header>
+
+
 <body>
     <div class="contents_wrap">
         
