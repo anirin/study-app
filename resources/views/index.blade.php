@@ -29,7 +29,7 @@
 <!--header finish-->
 
 <div id="timer_wrap" class="timer_wrap">
-        <div class="timer" id="time">30：00</div>
+        <div class="timer" id="time">30:00</div>
         <div class="counter"><span id="count">0周</span></div>
 </div>
 <!--timer finish-->
@@ -37,24 +37,32 @@
 <div class="button_wrap">
   <ul>
     <li class="button">
-      <input id="start" type="image" value="Start" src="/image/start.png">
-      <span>スタート</span></input>
+      <button id="start" type="submit">
+        <img src="/image/start.png">
+        <span>スタート</span>
+      </button>
     </li>
     <li class="button">
-      <input id="stop" type="image" value="Stop" src="/image/stop.png">
-      <span>ストップ</span></input>
+      <button id="stop" type="submit">
+        <img src="/image/stop.png">
+        <span>ストップ</span>
+      </button>
     </li>
     <li class="button">
-      <form action="{{route('study.store')}}" method="post">
-      @csrf
-      <input type="hidden" id="hidden" name="hidden_time" value="0">
-      <input type="image" value="Record" src="/image/record.png">
-      <span>記録</span></input>
-    </form>
+      <button type="submit" form="record">
+        <form id="record" action="{{route('study.store')}}" method="post">
+          @csrf
+          <input type="hidden" id="hidden" name="hidden_time" value="0">
+          <img src="/image/record.png">
+          <span>記録</span>
+        </form>
+      </button>
     </li>
     <li class="button">
-      <input type="image" class="mute_btn" id="mute_btn" onClick="mute()" value="Mute" src="/image/volume.png">
-      <span>音量</span></input>
+      <button id="mute" onClick="mute()">
+        <img class="mute_btn" id="mute_btn" src="/image/volume.png">
+        <span>音量</span>
+      </button>
     </li>
   </ul>
 </div>
@@ -82,7 +90,7 @@
 </div>
 
 <!--勉強時間-->
-<!--<div id="studyTime">00：00：00</div>-->
+<div id="studyTime" hidden></div>
 
 </div>
 <!--end main wrap-->
@@ -96,7 +104,7 @@
       min = Math.floor(count / 60);
       sec = count % 60;
       var count_down = document.getElementById("time");
-      count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
+      count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
       var message = "set time load";
       console.log(message);
     }

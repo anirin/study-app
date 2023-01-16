@@ -3,25 +3,50 @@
 <meta charset="utf-8">
 <head>
     <title>SETTING</title>
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="/css/setting.css">
+    
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
+    
 </head>
 <body>
-    <div>
-      <a href = "{{ url('/index') }}" >TOP</a>
+<div class="main_wrap">
+<header>
+    <div class="logo">
+      <a href="{{ url('/index') }}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
     </div>
-    <form action="{{ route('study.setting') }}" method="POST">
-        @method('PUT')
-        @csrf
-        <div>
-            勉強時間
-            <input type="number" name="study_time" value="{{old('play_time')?: $setting->study_time}}">
-        </div>
-        <div>
-            休憩時間
-            <input type="number" name="rest_time" value="{{old('play_time')?: $setting->rest_time}}">
-        </div>
-        <button type="submit">
-            設定する
-        </button>
-    </form>
+</header>
+    <div class="setting">
+        <form action="{{ route('study.setting') }}" method="POST">
+            @method('PUT')
+            @csrf
+            <div class="set_wrap">
+                <span>勉強時間</span>
+                <input type="number" id="study_min">
+                <span>分</span>
+                <input type="number" id="study_sec">
+                <span>秒</span>
+                <input type="hidden" id="study_time" name="study_time" value="{{$setting->study_time}}">
+            </div>
+            <div class="set_wrap">
+                <span>休憩時間</span>
+                <input type="number" id="rest_min">
+                <span>分</span>
+                <input type="number" id="rest_sec">
+                <span>秒</span>
+                <input type="hidden" id="rest_time" name="rest_time" value="{{$setting->rest_time}}">
+            </div>
+            <div class="set_wrap">
+                <button type="submit" onClick=set()>
+                    <span>設定</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    <script src='/js/setting.js'></script>
 </body>
 </html>
