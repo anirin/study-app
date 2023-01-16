@@ -37,41 +37,30 @@ header{
   color: white;
 }
 
-.contents_wrap {
-  width: 100%;
+.setting {
+  color: var(--main-txt-color);
   display: flex;
-  justify-content: space-between;
-}
-
-.link{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width:32%;
+  justify-content: center;
   border: 3px solid var(--main-bg-color);
-  text-align: center;
   border-radius: 10px;
   padding: 20px 0;
-  font-weight: bold;
 }
 
-.link a {
-  display: block;
-  width: 100%;
-  text-align: center;
-  color: var(--main-bg-color);
+.set_wrap input{
+  outline: none;
 }
 
-.link img{
-  height: 130px;
+.setting button{
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid var(--main-bg-color);
+    color :var(--main-bg-color)
 }
 
-.link span{
-  display: block;
-  width: 100%;
-  text-align: center;
+.setting button:hover {
+    background-color: #c9c9c9;
 }
 
-.link:hover {
-  background-color: #c9c9c9;
-}

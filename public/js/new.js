@@ -51,7 +51,7 @@ function timer_stop(){
     m = Math.floor((timer % 3600) / 60);
     s = timer % 60;
     var timer_show = document.getElementById("studyTime");
-    timer_show.innerHTML =("0"+h).slice(-2)+"：" + ("0"+m).slice(-2) +"：" + ("0"+s).slice(-2);
+    timer_show.innerHTML =("0"+h).slice(-2)+":" + ("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
     timer_f = false;
     document.getElementById("hidden").value = String(timer);
     var message = "timer stop ";
@@ -73,7 +73,7 @@ function count_down(){
         min = Math.floor(count / 60);
         sec = count % 60;
         var count_down = document.getElementById("time");
-        count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
+        count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
     }
 }
 
@@ -89,7 +89,7 @@ function count_reset(){
     min = Math.floor(count / 60);
     sec = count % 60;
     var count_down = document.getElementById("time");
-    count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
+    count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
     document.getElementById("start_sound").play();
  }
  

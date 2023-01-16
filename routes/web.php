@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudyController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScheduleController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,6 +24,12 @@ Route::get('/ranking', [StudyController::class, 'comment'])->name('study.ranking
 Route::post('/ranking', [StudyController::class, 'post'])->name('study.post');
 Route::get('/setting', [StudyController::class, 'show_setting'])->name('study.show_setting');
 Route::put('/setting', [StudyController::class, 'setting'])->name('study.setting');
+
+Route::get('/calendar', function () {
+    return view('calendar');
+});
+Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
+Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
 
 require __DIR__.'/auth.php';
 

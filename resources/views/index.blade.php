@@ -29,7 +29,7 @@
 <!--header finish-->
 
 <div id="timer_wrap" class="timer_wrap">
-        <div class="timer" id="time">30：00</div>
+        <div class="timer" id="time">30:00</div>
         <div class="counter"><span id="count">0周</span></div>
 </div>
 <!--timer finish-->
@@ -104,7 +104,7 @@
       min = Math.floor(count / 60);
       sec = count % 60;
       var count_down = document.getElementById("time");
-      count_down.innerHTML = ("0"+min).slice(-2) +"：" + ("0"+sec).slice(-2);
+      count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
       var message = "set time load";
       console.log(message);
     }
