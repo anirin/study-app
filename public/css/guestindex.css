@@ -1,0 +1,213 @@
+:root {
+  --main-bg-color: rgba(101, 197, 235);
+}
+
+html{
+  
+}
+
+body{
+  backgrond-color: rgba(211, 226, 240);
+  font-family: 'Kiwi Maru', serif;
+}
+
+.main_wrap{
+  width:100%;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--main-bg-color);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.logo span {
+  font-family: 'Kiwi Maru', serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: white;
+}
+
+header nav{
+/*   width: 40%; */
+}
+
+header nav ul{
+  width: 100%;
+}
+
+header nav ul li{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+header nav li a{
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  text-decoration:none;
+  padding: 10px 5px;
+  text-align: center;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+header nav li a:last-child{
+  margin-left: 10px;
+  
+}
+
+.header_word {
+  font-family: 'Kiwi Maru', serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: var(--main-bg-color);
+}
+
+header nav li a:hover {
+  background-color: #c9c9c9;
+}
+
+/*タイマー*/
+.timer_wrap {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 3px solid var(--main-bg-color);
+  color: var(--main-bg-color);
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.timer {
+  text-align: center;
+  display: flex;
+  font-weight: 800;
+  font-size: 140px
+}
+
+.counter {
+  font-weight: 400;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/*ボタン*/
+.button_wrap {
+  width: 100%;
+  border-radius: 10px;
+}
+
+ul {
+  width: 100%;
+  display: flex;
+}
+
+.button_wrap li {
+  width: 33.333%;
+  box-sizeing: borderbox;
+  border: 3px solid var(--main-bg-color);
+  border-top: none;
+}
+
+.button_wrap li:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.button_wrap li:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+.button_wrap li:nth-child(1),.button_wrap li:nth-child(2),.button_wrap li:nth-child(3){
+  border-right: none;
+}
+
+.button_wrap li button {
+    height: 100%;
+    width: 100%;
+
+    /* buttonのスタイル削除 */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+
+.button_wrap li button img{
+  width:30%;
+  padding: 10px 0px;
+}
+
+.button_wrap li button form{
+  width:100%;
+  display: block;
+  text-align: center;
+}
+
+.button span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: var(--main-bg-color);
+}
+
+.button:hover{
+  background-color: #c9c9c9;
+}
+
+/*サブコンテンツ*/
+.sub_contents_wrap {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.sub{
+  width:32%;
+}
+
+.sub a {
+  border: 3px solid var(--main-bg-color);
+  border-radius: 10px;
+  padding: 10px 0;
+  margin-top: 10px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: var(--main-bg-color);
+  box-sizing: border-box;
+}
+
+.sub img{
+  height: 150px;
+}
+
+.sub span{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.sub a:hover {
+  background-color: #c9c9c9;
+}

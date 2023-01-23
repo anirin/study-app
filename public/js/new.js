@@ -19,7 +19,7 @@ start.addEventListener('click',count_start, false);
 start.addEventListener('click',timer_start, false);
 stop.addEventListener("click",count_stop, false);
 stop.addEventListener("click",timer_stop, false);
-reset.addEventListener("click",count_reset,false);
+reset.addEventListener("click",count_all_reset,　false);
 
 
 function count_start(){
@@ -91,6 +91,17 @@ function count_reset(){
     var count_down = document.getElementById("time");
     count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
     document.getElementById("start_sound").play();
+ }
+ 
+ function count_all_reset(){
+    clearInterval(interval);
+    count = study_time + rest_time;
+    start_f = false;
+    min = Math.floor(count / 60);
+    sec = count % 60;
+    var count_down = document.getElementById("time");
+    count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+    timer = 0;
  }
  
  function mute() {

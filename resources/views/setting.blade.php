@@ -18,6 +18,11 @@
     <div class="logo">
       <a href="{{ url('/index') }}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
     </div>
+    <nav>
+        <ul>
+            <li><a href = "{{url('/index')}}" ><span class="header_word">TOP</span></a></li>
+        </ul>
+    </nav>
 </header>
     <div class="setting">
         <form action="{{ route('study.setting') }}" method="POST">
