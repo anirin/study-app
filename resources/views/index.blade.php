@@ -21,8 +21,7 @@
     </div>
     <nav>
       <ul>
-        <li><a href = "{{route('register')}}" ><span class="header_word">新規登録</span></a></li>
-        <li><a href = "{{route('login')}}" ><span class="header_word">ログイン</span></a></li>
+        <li><a href = "{{route('study.logout')}}" ><span class="header_word">ログアウト</span></a></li>
       </ul>
     </nav>
 </header>
@@ -36,6 +35,12 @@
 
 <div class="button_wrap">
   <ul>
+    <li class="button">
+      <button id="reset" type="submit">
+        <img src="/image/reset.png">
+        <span>リセット</span>
+      </button>
+    </li>
     <li class="button">
       <button id="start" type="submit">
         <img src="/image/start.png">
@@ -69,16 +74,16 @@
 <!--bottons finish-->
       
 <div class="sub_contents_wrap">
+  <!--<div class="sub">-->
+  <!--  <a href="{{route('study.result')}}">-->
+  <!--    <img alt="" src="/image/study_record.png">-->
+  <!--    <span>学習記録</span>-->
+  <!--  </a>-->
+  <!--</div>-->
   <div class="sub">
-    <a href="{{route('study.result')}}">
-      <img alt="" src="/image/study_record.png">
-      <span>学習記録</span>
-    </a>
-  </div>
-  <div class="sub">
-    <a href="{{route('study.ranking')}}">
-    <img alt="" src="/image/motivate.png">
-    <span>モチベ向上</span>
+    <a href="{{route('get-calendar')}}">
+    <img alt="" src="/image/calendar.png">
+    <span>カレンダー</span>
     </a>
   </div>
   <div class="sub">
@@ -86,6 +91,23 @@
     <img alt="" src="/image/setting.png">
     <span>設定</span>
     </a>
+  </div>
+</div>
+
+<div class = "record_wrap">
+  <div class= "ranking">
+  <span>利用者勉強時間</span>
+  @foreach($records as $record)
+  <span>{{$record->rank}}位</span>
+  @endforeach
+  </div>
+  <div class="today_study">
+      <span>今日の勉強時間</span>
+      <span id="today_time">00：00：00</span>
+  </div>
+  <div class="month_study">
+      <span>今月の勉強時間</span>
+      <span id="month_time">00：00：00</span>
   </div>
 </div>
 
@@ -109,6 +131,11 @@
       console.log(message);
     }
   </script>
+  <script>
+    const today_time = {{$today_time}};
+    const month_time = {{$month_time}};
+  </script>
+  <script src='/js/result.js'></script>
   <script src='/js/new.js'></script>
   <audio src='/mp3/start.mp3' id = "start_sound"></audio>
   <audio src='/mp3/rest.mp3' id = "rest_sound"></audio>

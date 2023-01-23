@@ -1,3 +1,4 @@
+
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -17,37 +18,6 @@ let calendar = new Calendar(calendarEl, {
     },
     locale: "ja",
 
-    // 日付をクリック、または範囲を選択したイベント
-    selectable: true,
-    select: function (info) {
-        //alert("selected " + info.startStr + " to " + info.endStr);
-
-        // 入力ダイアログ
-        const eventName = prompt("イベントを入力してください");
-
-        if (eventName) {
-            // Laravelの登録処理の呼び出し
-            axios
-                .post("/schedule-add", {
-                    start_date: info.start.valueOf(),
-                    end_date: info.end.valueOf(),
-                    event_name: eventName,
-                })
-                .then(() => {
-                    // イベントの追加
-                    calendar.addEvent({
-                        title: eventName,
-                        start: info.start,
-                        end: info.end,
-                        allDay: true,
-                    });
-                })
-                .catch(() => {
-                    // バリデーションエラーなど
-                    alert("登録に失敗しました");
-                });
-        }
-    },
     events: function (info, successCallback, failureCallback) {
         // Laravelのイベント取得処理の呼び出し
         axios
@@ -55,16 +25,29 @@ let calendar = new Calendar(calendarEl, {
                 start_date: info.start.valueOf(),
                 end_date: info.end.valueOf(),
             })
+            // .post("/schedule-get",{})
             .then((response) => {
                 // 追加したイベントを削除
                 calendar.removeAllEvents();
                 // カレンダーに読み込み
                 successCallback(response.data);
-            })
-            .catch(() => {
-                // バリデーションエラーなど
-                alert("登録に失敗しました");
+                console.log(response)
             });
+            // .catch(() => {
+            //     // バリデーションエラーなど
+            //     alert("登録に失敗しました");
+            // });
+        // axios.interceptors.request.use(request => {
+        //       console.log('Starting Request: ', request);
+        //       return request;
+        //     });
+            
+        // axios.interceptors.response.use(response => {
+        //       console.log('Response: ', response);
+        //       return response;
+        //     });
     },
+    
+    
 });
 calendar.render();

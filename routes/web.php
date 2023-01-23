@@ -5,32 +5,34 @@ use App\Http\Controllers\StudyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScheduleController;
 
+//ログイン関係（Auth）
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+require __DIR__.'/auth.php';
 
-Route::get('/', [StudyController::class, 'login'])->name('study.login');
+//最初の画面
+Route::get('/', [StudyController::class, 'index'])->name('study.login');
+// タイマー画面
 Route::get('/index', [StudyController::class, 'index'])->name('study.index');
+// 勉強時間の記録
 Route::post('/store', [StudyController::class, 'store'])->name('study.store');
 Route::post('/restore', [StudyController::class, 'restore'])->name('study.restore');
+// 学習記録
 Route::get('/result', [StudyController::class, 'result'])->name('study.result');
-Route::get('/ranking', [StudyController::class, 'comment'])->name('study.ranking');
-Route::post('/ranking', [StudyController::class, 'post'])->name('study.post');
+// 設定
 Route::get('/setting', [StudyController::class, 'show_setting'])->name('study.show_setting');
 Route::put('/setting', [StudyController::class, 'setting'])->name('study.setting');
-
-Route::get('/calendar', function () {
-    return view('calendar');
-});
+//ログアウト
+Route::get('/logout', [StudyController::class, 'logout'])->name('study.logout');
+//カレンダー関連
+Route::get('/calendar', function() {return view('calendar');})->name('get-calendar');
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
-
-require __DIR__.'/auth.php';
 
 

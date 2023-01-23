@@ -37,13 +37,58 @@ header{
   color: white;
 }
 
+header nav{
+/*   width: 40%; */
+}
+
+header nav ul{
+  width: 100%;
+}
+
+header nav ul li{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+header nav li a{
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  text-decoration:none;
+  padding: 10px 5px;
+  text-align: center;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin: 10px;
+}
+
+.header_word {
+  font-family: 'Kiwi Maru', serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: var(--main-bg-color);
+}
+
+header nav li a:hover {
+  background-color: #c9c9c9;
+}
+
 .setting {
   color: var(--main-txt-color);
   display: flex;
   justify-content: center;
   border: 3px solid var(--main-bg-color);
   border-radius: 10px;
-  padding: 20px 0;
+  padding: 10px 0;
+}
+
+.set_wrap {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px;
 }
 
 .set_wrap input{

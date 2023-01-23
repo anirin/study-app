@@ -46,7 +46,7 @@ header nav ul{
 }
 
 header nav ul li{
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,7 +134,7 @@ ul {
   border-bottom-right-radius: 10px;
 }
 
-.button_wrap li:nth-child(1),.button_wrap li:nth-child(2),.button_wrap li:nth-child(3){
+.button_wrap li:nth-child(1),.button_wrap li:nth-child(2),.button_wrap li:nth-child(3),.button_wrap li:nth-child(4){
   border-right: none;
 }
 
@@ -182,7 +182,7 @@ ul {
 }
 
 .sub{
-  width:32%;
+  width:49%;
 }
 
 .sub a {
@@ -199,7 +199,7 @@ ul {
 }
 
 .sub img{
-  height: 150px;
+  height: 100px;
 }
 
 .sub span{
@@ -210,4 +210,35 @@ ul {
 
 .sub a:hover {
   background-color: #c9c9c9;
+}
+
+.record_wrap{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.record_wrap div{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width:32%;
+  border: 3px solid var(--main-bg-color);
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+
+.record_wrap div span{
+  color: var(--main-bg-color);
+  text-align: center;
+  font-size: 30px;
+}
+
+.number{
+  color: var(--main-bg-color);
+  height:100px;
 }
