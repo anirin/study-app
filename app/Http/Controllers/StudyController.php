@@ -99,7 +99,7 @@ class StudyController extends Controller
         $record->subject_id = $request->subject_id;
         $record->comment = $request->comment;
         $record->time = $request->hidden_time;
-        $record->studied_date = $request->created_at;
+        $record->studied_date = $today;
         $record->timestamps = false;
         $record->user_id = \Auth::id();
         $record->save();
