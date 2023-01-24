@@ -54,7 +54,7 @@
       </button>
     </li>
     <li class="button">
-      <button type="submit" form="record">
+      <button id="record_btn" type="submit" form="record" disabled>
         <form id="record" action="{{route('study.store')}}" method="post">
           @csrf
           <input type="hidden" id="hidden" name="hidden_time" value="0">
@@ -74,12 +74,6 @@
 <!--bottons finish-->
       
 <div class="sub_contents_wrap">
-  <!--<div class="sub">-->
-  <!--  <a href="{{route('study.result')}}">-->
-  <!--    <img alt="" src="/image/study_record.png">-->
-  <!--    <span>学習記録</span>-->
-  <!--  </a>-->
-  <!--</div>-->
   <div class="sub">
     <a href="{{route('get-calendar')}}">
     <img alt="" src="/image/calendar.png">

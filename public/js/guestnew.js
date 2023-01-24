@@ -103,6 +103,9 @@ function count_reset(){
     count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
     timer = 0;
     i = 0;
+    document.getElementById("hidden").value = String(timer);
+    var count_repeat = document.getElementById("count");
+    count_repeat.innerHTML = i + "周";
  }
  
  function mute() {

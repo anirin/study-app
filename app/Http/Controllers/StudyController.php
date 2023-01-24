@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class StudyController extends Controller
@@ -94,6 +95,10 @@ class StudyController extends Controller
     public function restore(Request $request) {
         $now = Carbon::now();
         $today = $now->format('Y-m-d');
+        
+        $validated = $request->validate([
+            'comment' => 'required|max:255',
+        ]);
         
         $record = new Record;
         $record->subject_id = $request->subject_id;

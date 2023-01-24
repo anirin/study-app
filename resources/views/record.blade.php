@@ -19,17 +19,17 @@
           <a href="{{ url('/index') }}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
         </div>
     </header>
-    <div class="record_warp">
-        <div class="content">
-            <span>勉強時間</span>
-            <span id="studyTime">00：00：00</span>
-        </div>
-        <form action="{{route('study.restore')}}" method="post">
+    <div class="record_wrap">
+        <form id="restore" action="{{route('study.restore')}}" method="post">
+            <div class="content">
+                <span>作業時間</span>
+                <span id="studyTime">00：00：00</span>
+            </div>
             @csrf
             <input type="hidden" id="hidden" name="hidden_time" value="{{$record->time}}">
             <input type="hidden" id="calendar_time" name="calendar_time">
             <div class="content">
-                <span>科目</span>
+                <span>内容</span>
                 <select name="subject_id">
                     @foreach($subjects as $id => $subject)
                         <option value="{{ $id }}">{{ $subject }}</option>
@@ -38,14 +38,14 @@
             </div>
             <div class="content">
                 <span>コメント</span>
-                <input type="text" name="comment">
-            </div>
-            <div>
-                <button type="submit">
-                    <span>送信</span>
-                </button>
+                <input type="text" name="comment" value="コメント必須">
             </div>
         </form>
+    </div>
+    <div class="button_wrap">
+        <button type="submit" form="restore">
+            <span>記録</span>
+        </button>
     </div>
     
 </div>

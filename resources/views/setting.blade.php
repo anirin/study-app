@@ -30,17 +30,17 @@
             @csrf
             <div class="set_wrap">
                 <span>勉強時間</span>
-                <input type="number" id="study_min">
+                <input type="number" id="study_min" value="25">
                 <span>分</span>
-                <input type="number" id="study_sec">
+                <input type="number" id="study_sec" value="0">
                 <span>秒</span>
                 <input type="hidden" id="study_time" name="study_time" value="{{$setting->study_time}}">
             </div>
             <div class="set_wrap">
                 <span>休憩時間</span>
-                <input type="number" id="rest_min">
+                <input type="number" id="rest_min" value="5">
                 <span>分</span>
-                <input type="number" id="rest_sec">
+                <input type="number" id="rest_sec" value="0">
                 <span>秒</span>
                 <input type="hidden" id="rest_time" name="rest_time" value="{{$setting->rest_time}}">
             </div>
