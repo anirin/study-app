@@ -18,4 +18,6 @@ class Profession extends Model
     public function users() {
         return $this->hasMany('APP\Models\User');
     }
+    
+    public $timestamps = false;
 }
