@@ -3,7 +3,6 @@ var stop = document.getElementById("stop");
 var reset = document.getElementById("reset");
 
 var count   = 1800;
-var round_count = 1800;
 var min     = 0;      
 var sec     = 0;
 var i = 0;      
@@ -13,7 +12,6 @@ var interval;
 var interval_studyTime;
 var timer = 0;
 var mute_flag = 0;
-const circle = document.querySelector(".circle");
 
 start.addEventListener('click',count_start, false);
 start.addEventListener('click',timer_start, false);
@@ -33,7 +31,6 @@ function count_start(){
 function timer_start(){
     if (timer_f === false) {
         interval_studyTime = setInterval(count_up,1000);
-        round_timer();
         timer_f = true;
     }
 }
@@ -128,5 +125,4 @@ function count_reset(){
 　　    document.getElementById('mute_btn').src = "/image/volume.png";
 　　    mute_flag = 0;
 　  }
-　  console.log("mute関数　起動");
 }

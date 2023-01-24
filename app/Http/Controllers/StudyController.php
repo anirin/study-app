@@ -23,7 +23,7 @@ class StudyController extends Controller
     
     public function logout(){
         Auth::logout();
-        return redirect()->route('study.login');
+        return redirect()->route('study.index');
      }
     
     public function index() {
@@ -116,7 +116,6 @@ class StudyController extends Controller
         $schedule->user_id = \Auth::id();
         $schedule->save();
         
-        //return view('index',compact('record'));
         return redirect()->route('study.index');
     }
     

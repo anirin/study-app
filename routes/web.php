@@ -17,9 +17,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //最初の画面
-Route::get('/', [StudyController::class, 'index'])->name('study.login');
-// タイマー画面
-Route::get('/index', [StudyController::class, 'index'])->name('study.index');
+Route::get('/', [StudyController::class, 'index'])->name('study.index');
 // 勉強時間の記録
 Route::post('/store', [StudyController::class, 'store'])->name('study.store');
 Route::post('/restore', [StudyController::class, 'restore'])->name('study.restore');

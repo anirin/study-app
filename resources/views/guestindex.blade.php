@@ -4,7 +4,7 @@
 <head>
     <title>STOPWATCH</title>
     <link href="/css/reset.css" rel="stylesheet" type="text/css" >
-    <link rel="stylesheet" href="/css/guestindex.css">
+    <link rel="stylesheet" href="/css/index.css">
     
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 <body>
 <div class="main_wrap">
   
-<header>
+<header class="guest_header">
     <div class="logo">
       <span>ポモドーロ・テクニック<br>TIMER</span>
     </div>
@@ -34,7 +34,7 @@
 </div>
 <!--timer finish-->
 
-<div class="button_wrap">
+<div class="guest_button_wrap">
   <ul>
     <li class="button">
       <button id="reset" type="submit">

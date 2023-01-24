@@ -4,7 +4,7 @@
 <head>
     <title>RECORD</title>
     <link href="/css/reset.css" rel="stylesheet" type="text/css" >
-    <link rel="stylesheet" href="/css/record.css">
+    <link rel="stylesheet" href="/css/index.css">
     
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,10 +16,15 @@
 <div class="main_wrap">   
     <header>
         <div class="logo">
-          <a href="{{ url('/index') }}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
+          <a href="{{route('study.index')}}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
         </div>
+        <nav>
+            <ul>
+                <li><a href = "{{route('study.index')}}" ><span class="header_word">TOP</span></a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="record_wrap">
+    <div class="store_wrap">
         <form id="restore" action="{{route('study.restore')}}" method="post">
             <div class="content">
                 <span>作業時間</span>
@@ -42,7 +47,7 @@
             </div>
         </form>
     </div>
-    <div class="button_wrap">
+    <div class="store_button_wrap">
         <button type="submit" form="restore">
             <span>記録</span>
         </button>

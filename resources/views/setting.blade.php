@@ -4,7 +4,7 @@
 <head>
     <title>SETTING</title>
     <link href="/css/reset.css" rel="stylesheet" type="text/css" >
-    <link rel="stylesheet" href="/css/setting.css">
+    <link rel="stylesheet" href="/css/index.css">
     
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +16,11 @@
 <div class="main_wrap">
 <header>
     <div class="logo">
-      <a href="{{ url('/index') }}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
+      <a href="{{route('study.index')}}"><span>ポモドーロ・テクニック<br>TIMER</span></a>
     </div>
     <nav>
         <ul>
-            <li><a href = "{{url('/index')}}" ><span class="header_word">TOP</span></a></li>
+            <li><a href = "{{route('study.index')}}" ><span class="header_word">TOP</span></a></li>
         </ul>
     </nav>
 </header>

@@ -2,7 +2,7 @@
 <html>
     <head>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="/css/result.css">
+        <link rel="stylesheet" href="/css/index.css">
     </head>
 <body>
 <div class="main_wrap">
@@ -12,7 +12,7 @@
         </div>
         <nav>
           <ul>
-            <li><a href = "{{url('/index')}}" ><span class="header_word">TOP</span></a></li>
+            <li><a href = "{{route('study.index')}}" ><span class="header_word">TOP</span></a></li>
           </ul>
         </nav>
     </header>
