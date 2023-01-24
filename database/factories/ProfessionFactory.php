@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Subject;
 
-class SubjectFactory extends Factory
+class ProfessionFactory extends Factory
 {
     
 }
