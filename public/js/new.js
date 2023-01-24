@@ -102,6 +102,7 @@ function count_reset(){
     var count_down = document.getElementById("time");
     count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
     timer = 0;
+    i = 0;
  }
  
  function mute() {
