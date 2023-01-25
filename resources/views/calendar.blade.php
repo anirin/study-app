@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="/css/index.css">
+      <link rel="stylesheet" href="/css/index.css">
+        <!--font-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
     </head>
 <body>
 <div class="main_wrap">

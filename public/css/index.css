@@ -12,9 +12,12 @@ body{
 }
 /*背景*/
 .main_wrap{
-  width:100%;
-  max-width: 750px;
+  width: 750px;
   margin: 0 auto;
+} @media screen and (max-width:750px) {
+  .main_wrap {
+  width:100%;
+}
 }
 
 /*ヘッダー*/
@@ -29,13 +32,22 @@ header{
   padding: 10px 20px;
   align-items: center;
   box-sizing: border-box;
-}
+} @media screen and (max-width:750px) {
+  header {
+    padding:10px 2px;
+    margin-bottom: 50px;
+  }
+} 
 
 .logo span {
   font-family: 'Kiwi Maru', serif;
   font-weight: 600;
   font-size: 25px;
   color: white;
+} @media screen and (max-width:750px) {
+  .logo span {
+  font-size: 4vw;
+}
 }
 
 header nav ul{
@@ -63,7 +75,6 @@ header nav li a{
 
 header nav li a:last-child{
   margin-left: 10px;
-  
 }
 
 .header_word {
@@ -71,48 +82,20 @@ header nav li a:last-child{
   font-weight: 600;
   font-size: 25px;
   color: var(--main-bg-color);
-}
+} @media screen and (max-width:750px) {
+  .header_word {
+    font-size: 4vw;
+  }
+} 
 
 header nav li a:hover {
   background-color: #c9c9c9;
 }
-/*guest header*/
+/*ゲストユーザー用画面*/
+
 .guest_header nav ul{
   width: 100%;
   display: flex;
-}
-
-.guest_header nav ul li{
-  width: 50%;
-  box-sizing: border-box;
-}
-
-
-.guest_header nav li a{
-  display: block;
-  width: 100%;
-  background-color: #fff;
-  text-decoration:none;
-  padding: 10px 5px;
-  text-align: center;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-
-.guest_header nav li a:last-child{
-  margin-left: 10px;
-  
-}
-
-.guest_header > .header_word {
-  font-family: 'Kiwi Maru', serif;
-  font-weight: 600;
-  font-size: 25px;
-  color: var(--main-bg-color);
-}
-
-.guest_header nav li a:hover {
-  background-color: #c9c9c9;
 }
 
 /*タイマー*/
@@ -126,14 +109,22 @@ header nav li a:hover {
   color: var(--main-bg-color);
   padding: 50px 20px;
   box-sizing: border-box;
-}
+}  @media screen and (max-width:750px) {
+  .timer_wrap {
+    padding: 30px 20px;
+  }
+} 
 
 .timer {
   text-align: center;
   display: flex;
   font-weight: 800;
   font-size: 140px
-}
+} @media screen and (max-width:750px) {
+  .timer {
+    font-size: 20vw;
+  }
+} 
 
 .counter {
   font-weight: 400;
@@ -141,7 +132,11 @@ header nav li a:hover {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
+} @media screen and (max-width:750px) {
+  .counter {
+    font-size: 8vw;
+  }
+} 
 
 /*ボタン　user画面*/
 .button_wrap {
@@ -152,7 +147,11 @@ header nav li a:hover {
 .button_wrap ul {
   width: 100%;
   display: flex;
-}
+} @media screen and (max-width:750px) {
+  .button_wrap ul {
+    height: 80px;
+  }
+} 
 
 .button_wrap li {
   width: 25%;
@@ -160,6 +159,7 @@ header nav li a:hover {
   border: 3px solid var(--main-bg-color);
   border-top: none;
 }
+
 
 .button_wrap li:first-child {
   border-bottom-left-radius: 10px;
@@ -231,11 +231,19 @@ header nav li a:hover {
   text-align: center;
   color: var(--main-bg-color);
   box-sizing: border-box;
-}
+} @media screen and (max-width:750px) {
+  .sub_contents_wrap > .sub a {
+    font-size: 4vw;
+  }
+} 
 
 .sub_contents_wrap > .sub img{
   height: 100px;
-}
+} @media screen and (max-width:750px) {
+  .sub_contents_wrap > .sub img{
+    height: 40px;
+  }
+} 
 
 .sub_contents_wrap > .sub span{
   display: block;
@@ -271,7 +279,11 @@ header nav li a:hover {
   color: var(--main-bg-color);
   text-align: center;
   font-size: 30px;
-}
+}  @media screen and (max-width:750px) {
+  .record_wrap div span{
+    font-size: 4vw;
+  }
+} 
 
 /*設定画面*/
 .setting {
@@ -293,7 +305,11 @@ header nav li a:hover {
 
 .set_wrap input{
   outline: none;
-}
+} @media screen and (max-width:750px) {
+  .set_wrap input{
+    width: 20%;
+  }
+} 
 
 .setting button{
     display: inline-block;
@@ -317,7 +333,11 @@ header nav li a:hover {
 
 .guest_button_wrap ul {
   display: flex;
-}
+} @media screen and (max-width:750px) {
+  .guest_button_wrap ul {
+    height: 80px;
+  }
+} 
 
 .guest_button_wrap li {
   width: 25%;
@@ -374,6 +394,14 @@ header nav li a:hover {
 }
 
 /*記録画面*/
+.store_wrap {
+  padding-top: 100px;
+}
+@media screen and (max-width:750px) {
+  .store_wrap {
+    padding-top: 100px;
+  }
+} 
 .store_wrap form{
   display: flex;
   justify-content: space-between;
@@ -383,7 +411,7 @@ header nav li a:hover {
   width: 33%;
   border: 3px solid var(--main-bg-color);
   border-radius: 10px;
-  padding: 10px 0;
+  padding: 20px 0;
   margin-top: 10px;
   font-weight: bold;
   display: block;
@@ -395,6 +423,14 @@ header nav li a:hover {
 .store_wrap form .content span{
   display: block;
   text-align: center;
+}
+
+.store_wrap form .content input{
+  width: 80%;
+}
+
+.store_wrap form .content select{
+  width: 80%;
 }
 
 .store_button_wrap {

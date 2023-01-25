@@ -31,21 +31,12 @@ let calendar = new Calendar(calendarEl, {
                 calendar.removeAllEvents();
                 // カレンダーに読み込み
                 successCallback(response.data);
-                console.log(response)
+                console.log(response.data)
             });
             // .catch(() => {
             //     // バリデーションエラーなど
             //     alert("登録に失敗しました");
             // });
-        // axios.interceptors.request.use(request => {
-        //       console.log('Starting Request: ', request);
-        //       return request;
-        //     });
-            
-        // axios.interceptors.response.use(response => {
-        //       console.log('Response: ', response);
-        //       return response;
-        //     });
     },
     
     
