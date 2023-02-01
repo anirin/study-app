@@ -49,6 +49,27 @@ function get_hms(all_time) {
     return [h, m, s];
 }
 
+function set_rest_time(all_time, flag) {
+    var word1;
+    var word2;
+    if(flag == 0) {
+        word1 = "作業時間";
+        word2 = "休憩";
+    } else {
+        word1 = "休憩時間";
+        word2 = "作業";
+    }
+
+    var[h, m, s] = get_hms(all_time);
+    if(all_time < 60) {
+        work.innerHTML = word1 + "（" + word2 + s + "秒）";
+    } else if(all_time % 60 != 0) {
+        work.innerHTML = word1 + "（" + word2 + m + "分" + s + "秒)";
+    } else {
+        work.innerHTML = word1 + "（" + word2 + m + "分）";
+    }
+}
+
 function set_hms(all_time, id) {
     var [h, m, s] = get_hms(all_time);
     id.innerHTML =("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
@@ -78,11 +99,11 @@ function count_down(){
         var s_count = count - rest_time;
         if(s_count > 0) {
             set_hms(s_count, count_time);
-            work.innerHTML = "作業終了まで";
+            set_rest_time(rest_time, 0);
             console.log(h, m, s);
         } else {
             set_hms(count, count_time);
-            work.innerHTML = "休憩終了まで";
+            set_rest_time(study_time, 1);
         }
     }
 }
@@ -99,7 +120,7 @@ function count_reset(){
     start_f = false;
     set_hms(count - rest_time, count_time);
     document.getElementById("start_sound").play();
-    work.innerHTML = "作業終了まで";
+    set_rest_time(rest_time, 0);
  }
  
 //  リセットボタン押された場合のリセット
@@ -112,12 +133,7 @@ function count_reset(){
     i = 0;
     count_repeat.innerHTML = i + "周";
     document.getElementById("hidden").value = String(timer);
-    var[h, m, s] = get_hms(rest_time);
-    if(rest_time >= 60) {
-        work.innerHTML = "作業時間" + "（休憩" + m + "分）";
-    } else {
-        work.innerHTML = "作業時間" + "（休憩" + s + "秒）";
-    }
+    set_rest_time(rest_time, 0);
  }
  
 //  音のon off

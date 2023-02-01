@@ -1,10 +1,11 @@
 var start = document.getElementById('start');
 var stop = document.getElementById("stop");
 var reset = document.getElementById("reset");
+var count_time = document.getElementById("time");
+var work = document.getElementById("work");
+var count_repeat = document.getElementById("count");
 
 var count   = 1800;
-var min     = 0;      
-var sec     = 0;
 var i = 0;      
 var start_f = false;
 var timer_f = false;
@@ -12,6 +13,8 @@ var interval;
 var interval_studyTime;
 var timer = 0;
 var mute_flag = 0;
+var study_time = 1500;
+var rest_time= 300;
 
 start.addEventListener('click',count_start, false);
 start.addEventListener('click',timer_start, false);
@@ -23,7 +26,6 @@ reset.addEventListener("click",count_all_reset,false);
 function count_start(){
     if (start_f === false) {
         interval = setInterval(count_down,1000);
-        
         start_f = true;
     }
 }
@@ -39,38 +41,67 @@ function count_up(){
     timer++;
 }
 
-function timer_stop(){
-    clearInterval(interval_studyTime);
+function get_hms(all_time) {
     var h;
     var m;
     var s;
-    h = Math.floor(timer / 3600);
-    m = Math.floor((timer % 3600) / 60);
-    s = timer % 60;
-    var timer_show = document.getElementById("studyTime");
-    timer_show.innerHTML =("0"+h).slice(-2)+":" + ("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
+    h = Math.floor(all_time / 3600);
+    m = Math.floor((all_time % 3600) / 60);
+    s = all_time % 60;
+    
+    return [h, m, s];
+}
+
+function set_rest_time(all_time, flag) {
+    var word1;
+    var word2;
+    if(flag == 0) {
+        word1 = "作業時間";
+        word2 = "休憩";
+    } else {
+        word1 = "休憩時間";
+        word2 = "作業";
+    }
+
+    var[h, m, s] = get_hms(all_time);
+    if(all_time < 60) {
+        work.innerHTML = word1 + "（" + word2 + s + "秒）";
+    } else if(all_time % 60 != 0) {
+        work.innerHTML = word1 + "（" + word2 + m + "分" + s + "秒)";
+    } else {
+        work.innerHTML = word1 + "（" + word2 + m + "分）";
+    }
+}
+
+function set_hms(all_time, id) {
+    var [h, m, s] = get_hms(all_time);
+    id.innerHTML =("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
+}
+
+function timer_stop(){
+    clearInterval(interval_studyTime);
     timer_f = false;
-    document.getElementById("hidden").value = String(timer);
-    var message = "timer stop ";
-    console.log(message);
 }
 
 function count_down(){
     if(count === 1){
         i++;
-        var count_repeat = document.getElementById("count");
         count_repeat.innerHTML = i + "周";
         count_reset();
         count_start();
     }else {
         count--;
-        if(count == 300){
+        if(count == rest_time){
             document.getElementById("rest_sound").play();
         }
-        min = Math.floor(count / 60);
-        sec = count % 60;
-        var count_down = document.getElementById("time");
-        count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+        var s_count = count - rest_time;
+        if(s_count > 0) {
+            set_hms(s_count, count_time);
+            set_rest_time(rest_time, 0);
+        } else {
+            set_hms(count, count_time);
+            set_rest_time(study_time, 1);
+        }
     }
 }
 
@@ -79,50 +110,49 @@ function count_stop(){
     start_f = false;
 }
 
+// タイマーが一巡した場合のリセット
 function count_reset(){
     clearInterval(interval);
-    count = 1800;
+    count = study_time + rest_time;
     start_f = false;
-    min = Math.floor(count / 60);
-    sec = count % 60;
-    var count_down = document.getElementById("time");
-    count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+    set_hms(count - rest_time, count_time);
     document.getElementById("start_sound").play();
+    set_rest_time(rest_time, 0);
  }
  
+//  リセットボタン押された場合のリセット
  function count_all_reset(){
     clearInterval(interval);
-    count = 1800;
+    count = study_time + rest_time;
     start_f = false;
-    min = Math.floor(count / 60);
-    sec = count % 60;
-    var count_down = document.getElementById("time");
-    count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+    set_hms(count - rest_time, count_time);
     timer = 0;
     i = 0;
-    document.getElementById("hidden").value = String(timer);
-    var count_repeat = document.getElementById("count");
     count_repeat.innerHTML = i + "周";
+    set_rest_time(rest_time, 0);
  }
  
  function mute() {
-    if (document.getElementById('rest_sound').muted) {
-        document.getElementById('rest_sound').muted = false;
+    var rest_id = document.getElementById('rest_sound');
+    var start_id = document.getElementById('start_sound');
+    var mute_id = document.getElementById('mute_btn');
+    if (rest_id.muted = false) {
+        rest_id.muted = false;
+        console.log("not mute");
     } else {
-        document.getElementById('rest_sound').muted = true;
+        rest_id.muted = true;
+        console.log("mute");
     }
-    
-    if (document.getElementById('start_sound').muted) {
-        document.getElementById('start_sound').muted = false;
+    if (start_id.muted = false) {
+        start_id.muted = false;
     } else {
-        document.getElementById('start_sound').muted = true;
+        start_id.muted = true;
     }
-    
     if(mute_flag == 0){
-　　    document.getElementById('mute_btn').src = "/image/mute.png";
+　　    mute_id.src = "/image/mute.png";
 　　    mute_flag = 1;
 　  }else{
-　　    document.getElementById('mute_btn').src = "/image/volume.png";
+　　    mute_id.src = "/image/volume.png";
 　　    mute_flag = 0;
 　  }
 }
