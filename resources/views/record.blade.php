@@ -5,7 +5,7 @@
     <title>RECORD</title>
     <link href="/css/reset.css" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="/css/index.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

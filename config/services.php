@@ -30,5 +30,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    
+    'twitter' => [
+        'client_id'       => 'ODdJWDZEZXl4Q21NaHQ5ZWFaWXE6MTpjaQ',
+        'client_secret'   => '5O3GfJYdv9oi17AFG739x4AJbj7h68mb2mkLzpDLkSMkhRffV1',
+        'redirect'        => 'https://twitter.com/login/twitter/callback',
+        'oauth'           => 2,
+    ],
 ];

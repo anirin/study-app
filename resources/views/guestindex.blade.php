@@ -5,7 +5,7 @@
     <title>STOPWATCH</title>
     <link href="/css/reset.css" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="/css/index.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +29,11 @@
 <!--header finish-->
 
 <div id="timer_wrap" class="timer_wrap">
-        <div class="timer" id="time">30:00</div>
-        <div class="counter"><span id="count">0周</span></div>
+  <div class="timer">
+    <span class="work" id="work">作業時間（休憩5分）</span>
+    <span class="time" id="time">30:00</span>
+  </div>
+  <div class="counter"><span id="count">0周</span></div>
 </div>
 <!--timer finish-->
 
@@ -64,6 +67,9 @@
 </div>
 <!--bottons finish-->
 
+<button type="submit" class="btn twitter-btn">
+    <a href="login/twitter"><i class="fab fa-twitter"></i> Twitter Login</a>
+</button>
 
 </div>
 <!--end main wrap-->
