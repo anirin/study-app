@@ -1,11 +1,11 @@
 var start = document.getElementById('start');
 var stop = document.getElementById("stop");
 var reset = document.getElementById("reset");
+var count_time = document.getElementById("time");
+var work = document.getElementById("work");
+var count_repeat = document.getElementById("count");
 
 var count   = study_time + rest_time;
-var round_count = study_time + rest_time;
-var min     = 0;      
-var sec     = 0;
 var i = 0;      
 var start_f = false;
 var timer_f = false;
@@ -38,14 +38,25 @@ function count_up(){
     timer++;
 }
 
-function timer_stop(){
-    clearInterval(interval_studyTime);
+function get_hms(all_time) {
     var h;
     var m;
     var s;
-    h = Math.floor(timer / 3600);
-    m = Math.floor((timer % 3600) / 60);
-    s = timer % 60;
+    h = Math.floor(all_time / 3600);
+    m = Math.floor((all_time % 3600) / 60);
+    s = all_time % 60;
+    
+    return [h, m, s];
+}
+
+function set_hms(all_time, id) {
+    var [h, m, s] = get_hms(all_time);
+    id.innerHTML =("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
+}
+
+function timer_stop(){
+    clearInterval(interval_studyTime);
+    var[h, m, s] = get_hms(timer);
     var timer_show = document.getElementById("studyTime");
     timer_show.innerHTML =("0"+h).slice(-2)+":" + ("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
     timer_f = false;
@@ -56,7 +67,6 @@ function timer_stop(){
 function count_down(){
     if(count === 1){
         i++;
-        var count_repeat = document.getElementById("count");
         count_repeat.innerHTML = i + "周";
         count_reset();
         count_start();
@@ -65,10 +75,15 @@ function count_down(){
         if(count == rest_time){
             document.getElementById("rest_sound").play();
         }
-        min = Math.floor(count / 60);
-        sec = count % 60;
-        var count_down = document.getElementById("time");
-        count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+        var s_count = count - rest_time;
+        if(s_count > 0) {
+            set_hms(s_count, count_time);
+            work.innerHTML = "作業終了まで";
+            console.log(h, m, s);
+        } else {
+            set_hms(count, count_time);
+            work.innerHTML = "休憩終了まで";
+        }
     }
 }
 
@@ -77,51 +92,56 @@ function count_stop(){
     start_f = false;
 }
 
+// タイマーが一巡した場合のリセット
 function count_reset(){
     clearInterval(interval);
     count = study_time + rest_time;
     start_f = false;
-    min = Math.floor(count / 60);
-    sec = count % 60;
-    var count_down = document.getElementById("time");
-    count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+    set_hms(count - rest_time, count_time);
     document.getElementById("start_sound").play();
+    work.innerHTML = "作業終了まで";
  }
  
+//  リセットボタン押された場合のリセット
  function count_all_reset(){
     clearInterval(interval);
     count = study_time + rest_time;
     start_f = false;
-    min = Math.floor(count / 60);
-    sec = count % 60;
-    var count_down = document.getElementById("time");
-    count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
+    set_hms(count - rest_time, count_time);
     timer = 0;
     i = 0;
-    var count_repeat = document.getElementById("count");
     count_repeat.innerHTML = i + "周";
     document.getElementById("hidden").value = String(timer);
+    var[h, m, s] = get_hms(rest_time);
+    if(rest_time >= 60) {
+        work.innerHTML = "作業時間" + "（休憩" + m + "分）";
+    } else {
+        work.innerHTML = "作業時間" + "（休憩" + s + "秒）";
+    }
  }
  
+//  音のon off
  function mute() {
-    if (document.getElementById('rest_sound').muted) {
-        document.getElementById('rest_sound').muted = false;
+    var rest_id = document.getElementById('rest_sound');
+    var start_id = document.getElementById('start_sound');
+    var mute_id = document.getElementById('mute_btn');
+    if (rest_id.muted = false) {
+        rest_id.muted = false;
+        console.log("not mute");
     } else {
-        document.getElementById('rest_sound').muted = true;
+        rest_id.muted = true;
+        console.log("mute");
     }
-    
-    if (document.getElementById('start_sound').muted) {
-        document.getElementById('start_sound').muted = false;
+    if (start_id.muted = false) {
+        start_id.muted = false;
     } else {
-        document.getElementById('start_sound').muted = true;
+        start_id.muted = true;
     }
-    
     if(mute_flag == 0){
-　　    document.getElementById('mute_btn').src = "/image/mute.png";
+　　    mute_id.src = "/image/mute.png";
 　　    mute_flag = 1;
 　  }else{
-　　    document.getElementById('mute_btn').src = "/image/volume.png";
+　　    mute_id.src = "/image/volume.png";
 　　    mute_flag = 0;
 　  }
-　  console.log("mute関数　起動");
 }

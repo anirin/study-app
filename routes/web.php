@@ -3,7 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudyController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TwitterController;
+use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 //ログイン関係（Auth）
 Route::get('/dashboard', function () {
@@ -32,5 +36,7 @@ Route::get('/logout', [StudyController::class, 'logout'])->name('study.logout');
 Route::get('/calendar', function() {return view('calendar');})->name('get-calendar');
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
-
+// Twitter関連
+Route::get('login/twitter', [TwitterController::class, 'redirectToProvider'])->name('login.twitter');
+Route::get('login/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
 

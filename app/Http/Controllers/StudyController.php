@@ -55,29 +55,25 @@ class StudyController extends Controller
         $id = \Auth::user()->id;
         $tomorrow = $now->modify('+1 days')->format('Y-m-d');
         $records = DB::select("
-            SELECT * FROM(
-            SELECT S.user_id, max(S.time) AS time, count(A.time) + 1 AS rank FROM (
-                SELECT user_id, sum(time) AS time 
-                FROM records
-                WHERE studied_date >= '$today'
-                AND studied_date <= '$tomorrow'
-                GROUP BY user_id
-                ORDER BY time DESC
-            ) S
-            LEFT JOIN (
-                SELECT sum(time) AS time 
-                FROM records
-                WHERE studied_date >= '$today'
-                AND studied_date <= '$tomorrow'
-                GROUP BY user_id
-            ) A ON S.time < A.time
-            GROUP BY S.user_id
-            ORDER BY time DESC
-            )C
-            WHERE C.user_id = $id
-            ");
+        SELECT * FROM(
+            SELECT user_id, time, RANK() OVER(ORDER BY time DESC) AS rank FROM(
+                SELECT user_id, sum(time) AS time FROM records 
+                WHERE studied_date >= '$today' AND studied_date <= '$tomorrow'
+                GROUP BY user_id 
+            ) AS rank_table
+        )C
+        WHERE C.user_id = $id
+        ");
         
-        return view('index', compact('user', 'today_time', 'month_time', 'records'));
+        $all_users = DB::select("
+            SELECT COUNT(*) AS count FROM (
+                SELECT * FROM records
+                WHERE studied_date >= '$today' AND studied_date <= '$tomorrow'
+                GROUP BY user_id
+            ) AS all_users
+        ");
+       
+        return view('index', compact('user', 'today_time', 'month_time', 'records', 'all_users'));
     }
     
     public function store(Request $request) {
@@ -95,6 +91,11 @@ class StudyController extends Controller
     public function restore(Request $request) {
         $now = Carbon::now();
         $today = $now->format('Y-m-d');
+        // $subject = Subject::find($request->subject_id);
+        // ->where('subject');
+        $subject = Subject::where('id', $request->subject_id)
+            ->first(['subject']);
+        
         
         $validated = $request->validate([
             'comment' => 'required|max:255',
@@ -112,7 +113,7 @@ class StudyController extends Controller
         $schedule = new Schedule;
         $schedule->start_date = $today;
         $schedule->end_date = $today;
-        $schedule->event_name = $request->calendar_time;
+        $schedule->event_name = "{$request->calendar_time} : {$subject->subject} : {$request->comment}";
         $schedule->user_id = \Auth::id();
         $schedule->save();
         

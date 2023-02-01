@@ -28,8 +28,11 @@
 <!--header finish-->
 
 <div id="timer_wrap" class="timer_wrap">
-        <div class="timer" id="time">30:00</div>
-        <div class="counter"><span id="count">0周</span></div>
+  <div class="timer">
+    <span class="work" id="work">作業時間（休憩5分）</span>
+    <span class="time" id="time">30:00</span>
+  </div>
+  <div class="counter"><span id="count">0周</span></div>
 </div>
 <!--timer finish-->
 
@@ -54,16 +57,6 @@
       </button>
     </li>
     <li class="button">
-      <button id="record_btn" type="submit" form="record" disabled>
-        <form id="record" action="{{route('study.store')}}" method="post">
-          @csrf
-          <input type="hidden" id="hidden" name="hidden_time" value="0">
-          <img src="/image/record.png">
-          <span>記録</span>
-        </form>
-      </button>
-    </li>
-    <li class="button">
       <button id="mute" onClick="mute()">
         <img class="mute_btn" id="mute_btn" src="/image/volume.png">
         <span>音量</span>
@@ -75,6 +68,16 @@
       
 <div class="sub_contents_wrap">
   <div class="sub">
+    <button id="record_btn" type="submit" form="record" disabled>
+        <form id="record" action="{{route('study.store')}}" method="post">
+          @csrf
+          <input type="hidden" id="hidden" name="hidden_time" value="0">
+          <img src="/image/record.png">
+          <span>作業記録</span>
+        </form>
+      </button>
+  </div>
+  <div class="sub">
     <a href="{{route('get-calendar')}}">
     <img alt="" src="/image/calendar.png">
     <span>カレンダー</span>
@@ -83,17 +86,22 @@
   <div class="sub">
     <a href="{{route('study.setting')}}">
     <img alt="" src="/image/setting.png">
-    <span>設定</span>
+    <span>時間設定</span>
     </a>
   </div>
 </div>
 
 <div class = "record_wrap">
   <div class= "ranking">
-  <span>利用者勉強時間</span>
-  @foreach($records as $record)
-  <span>{{$record->rank}}位</span>
-  @endforeach
+  <span>利用者勉強順位</span>
+  @if(!empty($records))
+    @foreach($records as $record)
+    <span>{{$record->rank}}/
+    @endforeach
+    @foreach($all_users as $all)
+    {{$all->count}}位</span>
+    @endforeach
+  @endif
   </div>
   <div class="today_study">
       <span>今日の勉強時間</span>
@@ -112,18 +120,38 @@
 <!--end main wrap-->
 
   <script type="text/javascript">
-    var study_time = {{$user->study_time}};
-    var rest_time = {{$user->rest_time}};
-    window.addEventListener("load", set_time);
+  var study_time = {{$user->study_time}};
+  var rest_time = {{$user->rest_time}};
+  var count_down = document.getElementById("time");
+  window.addEventListener("load", set_all());
+  
+  function get_hms(all_time) {
+  var h;
+  var m;
+  var s;
+  h = Math.floor(all_time / 3600);
+  m = Math.floor((all_time % 3600) / 60);
+  s = all_time % 60;
+  
+  return [h, m, s];
+  }
+
+  function set_hms(all_time, id) {
+      var [h, m, s] = get_hms(all_time);
+      id.innerHTML =("0"+m).slice(-2) +":" + ("0"+s).slice(-2);
+  }
+  
+  function set_all() {
+    set_hms(study_time, count_down);
     
-    function set_time() {
-      min = Math.floor(count / 60);
-      sec = count % 60;
-      var count_down = document.getElementById("time");
-      count_down.innerHTML = ("0"+min).slice(-2) +":" + ("0"+sec).slice(-2);
-      var message = "set time load";
-      console.log(message);
+    var[h, m, s] = get_hms(rest_time);
+    if(rest_time >= 60) {
+        work.innerHTML = "作業時間" + "（休憩" + m + "分）";
+    } else {
+        work.innerHTML = "作業時間" + "（休憩" + s + "秒）";
     }
+  }
+    
   </script>
   <script>
     const today_time = {{$today_time}};
