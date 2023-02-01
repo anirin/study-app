@@ -17,9 +17,8 @@ class TwitterController extends Controller
     }
     public function handleProviderCallback()
     {
-        dd("call back");
         try {
-            $user = Socialite::driver('twitter')->user();
+            $user = Socialite::driver('twitter-oauth-2')->user();
             $socialUser = User::firstOrCreate([
                 'token'    => $user->token,
             ], [

@@ -37,6 +37,6 @@ Route::get('/calendar', function() {return view('calendar');})->name('get-calend
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
 // Twitter関連
-Route::get('login/twitter', [TwitterController::class, 'redirectToProvider'])->name('login.twitter');
-Route::get('login/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
+Route::get('/login/twitter', [TwitterController::class, 'redirectToProvider'])->name('login.twitter');
+Route::get('/login/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
 

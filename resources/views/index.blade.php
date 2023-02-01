@@ -30,7 +30,7 @@
 <div id="timer_wrap" class="timer_wrap">
   <div class="timer">
     <span class="work" id="work">作業時間（休憩5分）</span>
-    <span class="time" id="time">30:00</span>
+    <span class="time" id="time">25:00</span>
   </div>
   <div class="counter"><span id="count">0周</span></div>
 </div>
@@ -145,10 +145,12 @@
     set_hms(study_time, count_down);
     
     var[h, m, s] = get_hms(rest_time);
-    if(rest_time >= 60) {
-        work.innerHTML = "作業時間" + "（休憩" + m + "分）";
+    if(rest_time < 60) {
+        work.innerHTML = "作業時間" + "（休憩"  + s + "秒）";
+    } else if(all_time % 60 != 0) {
+        work.innerHTML = "作業時間" + "（休憩" + m + "分" + s + "秒)";
     } else {
-        work.innerHTML = "作業時間" + "（休憩" + s + "秒）";
+        work.innerHTML = "作業時間" + "（休憩" + m + "分）";
     }
   }
     

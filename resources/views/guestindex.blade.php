@@ -31,7 +31,7 @@
 <div id="timer_wrap" class="timer_wrap">
   <div class="timer">
     <span class="work" id="work">作業時間（休憩5分）</span>
-    <span class="time" id="time">30:00</span>
+    <span class="time" id="time">25:00</span>
   </div>
   <div class="counter"><span id="count">0周</span></div>
 </div>
@@ -67,9 +67,9 @@
 </div>
 <!--bottons finish-->
 
-<button type="submit" class="btn twitter-btn">
-    <a href="login/twitter"><i class="fab fa-twitter"></i> Twitter Login</a>
-</button>
+<!--<button type="submit" class="btn twitter-btn">-->
+<!--    <a href="login/twitter"><i class="fab fa-twitter"></i> Twitter Login</a>-->
+<!--</button>-->
 
 </div>
 <!--end main wrap-->
