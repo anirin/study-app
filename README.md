@@ -1,28 +1,19 @@
-# Name（Pomodoro_study_app）
+# ポモドーロテクニックアプリ
 
 ポモドーロテックニックタイマーと学習記録の機能を持ったアプリ
 
-# DEMO
+# デモ
 
+https://user-images.githubusercontent.com/70754723/216202185-fe3ce14e-5f5a-472e-a1c1-3cf58fb69e70.mp4
 
-
-# Features
+#特徴
 
 順位機能によるモチベーション向上、個人にあった作業と休憩時間設定、学習記録が可能
 
-# Requirement
-
-# Installation
-
-# Usage
-
-# Note
-
-コメントは空欄にできない
-
-# Author
-
-* Atsuki Okamoto
-* atu8823atu@gmail.com
-
-# License
+#機能
+・タイマー機能
+・ログイン機能（laravel承認）
+・時間設定機能
+・カレンダー機能（Fullcalendar)
+・学習記録機能
+・ランキング機能
